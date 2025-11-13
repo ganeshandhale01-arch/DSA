@@ -1,4 +1,4 @@
-// C program to delete the occurrence of key in singly linked list
+// C program to delete first occurrence of key in singly linked list
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,45 +32,58 @@ void printList(SLINK * head)
 int deleteKeyOccurance (SLINK **head, int key)
 {
     int result = EXIT_FAILURE;
-    SLINK *cur = *head, *prev = NULL; 
-    SLINK *next = NULL, *temp = NULL;
+    SLINK *cur = *head, *prev = NULL;
+    SLINK *firstLink = NULL, *firstPrev = NULL;
 
-    // if head node itself holds the key to be deleted
+    if (!head || !*head)
+    {
+        return result;
+    }
+
     while (cur != NULL)
     {
-        next = cur->next;  // Save next node before potential deletion
         if (cur->data == key)
         {
-            if (prev == NULL)
-            {
-                *head = cur->next;   
-            }
-            else
-            {
-                prev->next = cur->next;
-            }
-            temp = cur;
-            cur = cur->next;
-            free((void*)temp);
-            result = EXIT_SUCCESS;            
+            firstPrev = prev;
+            firstLink = cur;
+            break;
+        }
+        prev = cur;
+        cur = cur->next;
+    }
+
+    if (firstLink == NULL)
+    {
+        printf("Key not found\n");
+        result = EXIT_FAILURE;
+        return result;
+    }
+    else
+    {   // if head node itself holds the key to be deleted
+        if (firstPrev == NULL )
+        {
+            firstLink = *head;
+            *head = (*head)->next;
         }
         else
         {
-            prev = cur;
-            cur = cur->next;
-        }
+            firstLink = firstPrev->next;
+            firstPrev->next = firstLink->next;
+        }                                                                                                           
+        free((void*)firstLink);
+        result = EXIT_SUCCESS;
     }
     return result;
 }
 
 int main()
 {
-    SLINK * head = createNode(1);
+    SLINK * head = createNode(2);
     head->next = createNode(1);
     head->next->next = createNode(1);
-    head->next->next->next = createNode(1);
+    head->next->next->next = createNode(3);
 
-    int key = 2;
+    int key = 1;
     printf("Original list: ");
     printList(head);
 
