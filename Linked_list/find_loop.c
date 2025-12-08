@@ -95,7 +95,8 @@ int main()
     head1->next->next = createNode(3);
     head1->next->next->next = createNode(4);
     head1->next->next->next->next = createNode(6);
-    head1->next->next->next->next->next = head1->next->next; // Creating loop for testing
+    head1->next->next->next->next->next = createNode(7);
+    head1->next->next->next->next->next->next = head1->next->next->next; // Creating loop for testing
 
     result = isLoop(head1);
     if (result == 1)
