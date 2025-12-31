@@ -1,0 +1,27 @@
+
+what is yocto & how we can use it for am335x beaglebone board specifiv arch?
+
+What all are steps involved in the yocto to when we run bitbake command for am335x beaglebone board?
+
+In the TI Processor SDK (TISDK) Yocto build for AM335x BeagleBone boards?
+
+4. Fetching Sources
+Downloads source tarballs or clones Git repositories (Linux kernel, U-Boot, libraries).
+Stores them in DL_DIR.
+What is DL_DIR in above step?
+
+5. Unpacking & Patching
+Extracts sources into WORKDIR.
+Applies Yocto patches (e.g., kernel patches for AM335x board support).
+What is WORKDIR in above step?
+
+how you can inspect your patched kernel tree inside WORKDIR during a TISDK Yocto build for AM335x?
+
+you like me to map exactly where your kernel patches slot into the TISDK pipeline (do_patch ? do_compile ? do_deploy) so you can see how your work integrates with TI?s Yocto flow?
+
+Give me to give you a step-by-step minimal working example (commands + layer setup) specifically for BeagleBone Black AM335x? That way you can try it out quickly?
+
+what all are folder & layers in yocto?
+
+Yocto related interview question & answer?
+
