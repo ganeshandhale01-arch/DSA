@@ -1,0 +1,194 @@
+Interview Questions & Answers
+Q 1 -->
+int a = 10;
+
+int * iptr = (int*)&a;
+
+int *fptr = (float*) iptr;
+
+printf("%f", *fptr);
+
+Q 2 ---->
+int x=10;
+printf("%d", sizeof(a++));
+
+Q 3 ----> find max1 & max2 + min 1 & min 2
+int main()
+{
+    int arr [] = {10, 20, 5, 3, 2, 1, 12};
+    
+    int  max1 = 0, max2 = 0, min1 = 32, min2 = 32;
+    int  i;
+    
+    for(i = 0; i < 7; i++)
+    {
+        if(max1 < arr[i])
+        {
+            max2 = max1;
+            max1 = arr[i];
+            printf("max1 = %d\n", max1);
+        }
+        else if (max2 < arr[i] && max1 < arr[i])
+        {
+            max2 = arr[i];
+        }
+        
+        if (min1 > arr[i])
+        {
+            min2 = min1;
+            min1 = arr[i];
+            printf("min1 = %d\n", min1);
+        }
+        else if (min2 > arr[i] && min1 < arr[i])
+        {
+            min2 = arr[i];
+        }
+    }
+    printf("Max1 = %d, max2 = %d, min1 = %d, min2 = %d", max1, max2, min1, min2);
+
+    return 0;
+}
+int main()
+{
+    int arr [] = {10, 20, 5, 3, 2, 1, 12};
+    
+    int  max1 = 0, max2 = 0, min1 = 32, min2 = 32;
+    int  i;
+    
+    for(i = 0; i < 7; i++)
+    {
+        if(max1 < arr[i])
+        {
+            max2 = max1;
+            max1 = arr[i];
+            printf("max1 = %d\n", max1);
+        }
+        else if (max2 < arr[i] && max1 < arr[i])
+        {
+            max2 = arr[i];
+        }
+        
+        if (min1 > arr[i])
+        {
+            min2 = min1;
+            min1 = arr[i];
+            printf("min1 = %d\n", min1);
+        }
+        else if (min2 > arr[i] && min1 < arr[i])
+        {
+            min2 = arr[i];
+        }
+    }
+    printf("Max1 = %d, max2 = %d, min1 = %d, min2 = %d", max1, max2, min1, min2);
+
+    return 0;
+}
+
+Q 4 ---> convert number into base3 using recursion
+#include <stdio.h>
+#include <stdint.h>
+int res[10] = {0};
+
+
+int base3(int n)
+{
+    static int i = 0;
+    if(n == 0)
+    {   
+        printf("%d\n", n%3);
+        return (n%3);
+    }
+    else
+    {
+        printf("%d\n", n%3);
+        res[i++] = n%3;
+        base3(n/3);
+    }
+    
+}
+
+int main()
+{   
+    base3(12);
+    
+    printf("res[0] = %d, res[1] = %d, res[2] =%d", res[0], res[1], res[2]);
+    return 0;
+}
+
+Q 5 -----> review the code & add comment
+
+void *entry_function(void *params) {
+     char *local_params = (char * *)params;
+
+      while (1) {
+            printf("I am alive: %s\n", local_params);
+       }
+
+      return NULL;
+}
+
+main() {
+     char *var = "Ganesh";
+
+     pthread_create( ,  entry_function, var);
+}
+
+unsigned int g_locked = 0;
+
+void access_mt_safe(void) 
+{
+    while (g_locked);
+    g_ locked = 1;
+
+    /* access shared area */
+    
+    g_locked = 0;
+}
+
+is not safe for multi-processing (or even multi-threading) because:
+
+g_locked updates are not atomic ? two callers can observe g_locked == 0 simultaneously and both enter.
+There are no memory ordering guarantees ? another core may reorder loads/stores around the lock.
+It?s a busy-wait with no fairness or sleep ? wastes CPU and can starve lower-priority tasks.
+
+
+Q 6 --> Tell me about a challenging debugging scenario you solved.
+Situation:
+While working on an embedded Linux project, we faced an issue where the Ethernet interface was not coming up during board bring-up. The hardware team confirmed that the PHY was powered, but the link was not detected.
+Task:
+My responsibility was to debug the Ethernet driver and ensure proper initialization of the MAC and PHY layers.
+Action:
+I started by checking kernel logs (dmesg) and confirmed that the driver was loading but failing during negotiation. Next, I inspected the device tree configuration to verify the clock source and PHY address. Upon deeper debugging, I found that the hardware clock for the Ethernet MAC was enabled on the software side, but the PHY was not receiving the appropriate clock signal due to a hardware design issue.
+I collaborated with the hardware team to review the schematic, and they confirmed the missing clock routing. They modified the hardware design to fix the issue. Meanwhile, I validated the software side by ensuring the MAC clock was enabled and verified the device tree entries for the correct clock node. After the hardware fix and updated DTB, the Ethernet interface initialized successfully.
+Result:
+The Ethernet link came up, and data transfer was verified using ping and iperf. This resolved a critical blocker for board bring-up and reinforced the importance of hardware-software co-debugging.
+
+Q --->
+Event notifier
+Implement an event notifier routine which will allow users to subscribe, unsubscribe and call an event.
+
+Task
+Write the code to pass all tests. Follow the instructions below in order to successfully complete this task.
+
+Task Details
+Introduction
+Our company develops modular telemetry devices for various purposes, for example, measuring gas/water usage, vehicle driving parameters, gathering data from a weather station, etc.
+
+Thanks to the modular design, the core of each device may be identical and only specialized modules differ between devices. Very often one module needs information that can be provided by a completely different module.
+
+For example the airbag system needs information from acceleration sensors to decide whether to launch an airbag or not. In such cases, to keep modules separated as much as possible, we need an event notifier system that will allow the modules to subscribe or unsubscribe for specified events and get notified when that event occurs. The subscribers' handlers should be called in the exact same order as the order of their subscriptions.
+
+Problem Statement
+Implement the function  which initializes the event specific  struct.
+Implement the functions  and  which accept an event specific struct, event handler which is subscribing or unsubscribing that event, and return  which indicates whether subscription/unsubscription was successful or not.
+Implement the function  which accepts an event specific struct, pointer to a data and the data length to pass to the subscribers' handlers.
+Implement the function  which releases all the resources acquired for the specified event.
+Event handler
+An event handler is a function which does not return any value and accepts a pointer to the actual event, associated data, and the data length.
+
+Hints
+Please make sure to avoid any memory leaks when subscriptions and unsubscriptions are made. There is no need to validate the inputs for a NULL pointer value. The user should be smart enough not to pass them.
+
+All the subscribed handlers have to be called in the subscription order (need to preserve the order). In case of multiple subscriptions of the same handler, it should be called multiple times in the right order. When unsubscription is made of a handler that was inserted multiple times, only its first occurrence (the oldest one) should be removed.
+
+
