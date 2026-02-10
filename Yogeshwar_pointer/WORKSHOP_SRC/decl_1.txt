@@ -1,0 +1,17 @@
+int (*(*pfn)(int, int))[5];
+
+pfn is 
+
+int (*(*    pfn     )(int, int))[5];
+
+pfn is a pointer to 
+
+int (*  (*pfn)  (int, int))[5];
+
+pfn is a pointer to a function accepting int and int 
+and returning pointer to 
+
+int     (*(*pfn)(int, int))     [5];
+
+pfn is a pointer to a function accepting int and int 
+and returning pointer to array 5 of ints. 

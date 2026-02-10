@@ -1,0 +1,189 @@
+P1: Declare a pointer to int 
+P2: Declare a pointer to array 5 of integer 
+P3: Declare a pointer to array 5 of struct A. 
+P4: Declare a pointer to function accepting two ints returning an int 
+P5: Declare a pointer to function accepting two integers and returns 
+	a pointer to array 5 of int 
+P6: Declare a pointer to function accepting 
+		(1)an int
+		(2) a pointer to function accepting int and returning void  
+		returning 
+		a pointer to function accepting int and returning void
+P7: Declare an array 5 of pointers to function accepting two integers and 
+	returning an integer 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+P5: Declare a pointer to function accepting two integers and returns 
+	a pointer to array 5 of int 
+
+	int (*(*p)(int, int))[5]
+
+P6: Declare a pointer to function accepting 
+		(1)an int
+		(2) a pointer to function accepting int and returning void  
+		returning 
+		a pointer to function accepting int and returning void
+
+1. Declare a poitner 
+	
+		*p
+
+2. Declare a pointer a to a function 
+
+		(*p)()
+
+3. Declare a pointer to a function accepting 
+	(1) int 
+
+		(*p)(int)
+
+4. Declare a pointer to a function accepting 
+	1. integer 
+	2. pointer 
+
+	(*p)(int, *)
+
+5. Declare a pointer to a function accepting 
+	1. integer 
+	2. pointer to a function 
+
+	(*p)(int, (*)()); 
+
+6. Declare a pointer to a function accepting 
+	1. integer 
+	2. pointer to a function accepting int and returning void 
+
+	(*p)(int, void(*)(int))
+
+7. Declare a pointer to a function accepting 
+	1. integer 
+	2. pointer to a function accepting int and returning void 
+	Return 
+	a pointer 
+	
+	*(*p)(int, void(*)(int))
+
+8. Declare a pointer to a function accepting 
+	1. integer 
+	2. pointer to a function accepting int and returning void 
+	returns 
+	a pointer to a function 
+
+	(*(*p)(int, void(*)(int)))()
+
+9. Declare a pointer to a function accepting 
+	1. integer 
+	2. pointer to a function accepting int and returning void 
+	and returns 
+	a pointer to a function accepting int and returning void 
+
+	void (*(*p)(int, void(*)(int)))(int); 
+
+#----------------------------------------------------------------------
+
+Declare a pointer to array 3 of pointer to function 
+	accepting 
+	1. int 	
+	2. int 
+	returning 
+	pointer to array 4 of pointers to function accepting 
+		1) int 
+		2) int 
+	returning pointer to array 5 of int 
+#-----------------------------------------------------------------------
+
+1. Declare a pointer 
+	
+	*p
+
+2. Declare a pointer to array 3 of 
+
+	(*p)[3] 
+
+3. Declare a pointer to array 3 of pointer 
+	
+	*(*p)[3]
+
+4. Declare a pointer to array 3 of pointer to function 
+	(*(*p)[3])()
+
+5. Declare a pointer to array 3 of pointer to function accepting 
+	1. int 
+	2. int 
+
+	(*(*p)[3])(int, int) 
+
+6. Declare a pointer to array 3 of pointer to function accepting 
+	1. int 
+	2. int 
+	returning a pointer 
+
+	*(*(*p)[3])(int, int)
+
+7. Declare a pointer to array 3 of pointer to function accepting 
+	1. int 
+	2. int 
+	returning a pointer to array 4 of
+	
+	(*(*(*p)[3])(int, int))[4] 
+
+8. Declare a pointer to array 3 of pointer to function accepting 
+	1. int 
+	2. int 
+	returning a pointer to array 4 of pointer 
+
+	*(*(*(*p)[3])(int, int))[4]
+
+9. Declare a pointer to array 3 of pointer to function accepting 
+	1. int 
+	2. int 
+	returning a pointer to array 4 of pointer to function 
+
+	(*(*(*(*p)[3])(int, int))[4])()
+
+
+10. Declare a pointer to array 3 of pointer to function accepting 
+	1. int 
+	2. int 
+	returning a pointer to array 4 of pointer to function
+	accepting 
+		int 
+		int 
+
+	(*(*(*(*p)[3])(int, int))[4])(int, int)
+	
+
+11. Declare a pointer to array 3 of pointer to function accepting 
+	1. int 
+	2. int 
+	returning a pointer to array 4 of pointer to function
+	accepting 
+		int 
+		int 	
+	returns a pointer 
+
+	*(*(*(*(*p)[3])(int, int))[4])(int, int)
+
+12. Declare a pointer to array 3 of pointer to function accepting 
+	1. int 
+	2. int 
+	returning a pointer to array 4 of pointer to function
+	accepting 
+		int 
+		int 	
+	returns a pointer to array 5 of ints 
+
+	int (*(*(*(*(*p)[3])(int, int))[4])(int, int))[5]; 
+	

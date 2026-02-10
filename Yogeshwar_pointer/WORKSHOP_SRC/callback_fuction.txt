@@ -1,0 +1,20 @@
+1)  A callback function is defined by programmer but almost always called by 
+    language compiler / library / OS. 
+
+2)  Prototype / declaration of a callback function is partially or fully specified by the 
+    language compiler / library or OS. 
+    The prototype of function includes the following decisions: 
+        i) name of the function 
+        ii) total number of parameters of function 
+        iii) type of each formal parameter of function 
+        iv) return type of function. 
+        v) calling convention of function 
+
+LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam); 
+
+3)  If name of callback function is not specified by the caller then it becomes 
+    important to register an address of callback function to compiler / library / OS. 
+
+4)  Compiler / library / OS usually call a callback function as a response to an event 
+    which only they are capable for decection and not an application programmer. 
+#-------------------------------------------------------------------------------------------------

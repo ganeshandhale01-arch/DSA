@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "c:/Users/yoges/OneDrive/Documents/CPA/SEMINARS_AND_WORKSHOPS/WORKSHOPS/ADVANCED_C_POINTERS/04_JUL_23/DAY_1/2_ADDR_ARITHMETIC",
+      "program": "c:/Users/yoges/OneDrive/Documents/CPA/SEMINARS_AND_WORKSHOPS/WORKSHOPS/ADVANCED_C_POINTERS/04_JUL_23/DAY_1/2_ADDR_ARITHMETIC/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+1) Knowledge of how to build and run C source code. 
+
+2) Following topics of C: 
+    a)  Data definition statements: int n; char c; etc. 
+    b)  Branching statements: if, if/else, if/else if/else, switch case 
+    c)  Looping statements: for, while, do_while, break, continue
+    d)  Arrays of built in data types: int arr[5]; etc. 
+        Traversing arrays using loop and index variables
+        for(i = 0; i < 5; ++i)
+            arr[i]; 
+        etc. 
+    e)  How to declare, define and call function. 
+        void test(int m, int n);    /* Declaration */ 
+
+        int main(void){
+            test(100, 200);         /*  Call */ 
+            return 0; 
+        }
+
+        /* Definition */ 
+        void test(int m, int n)
+        {
+            printf("Input:m = %d, n = %d\n", m, n); 
+        }
+
+    f)  Basic pointer syntax: 
+        int n = 100; 
+        int* p = &n; 
+        etc. 
+
+    g)  Pass by value / Pass by reference 

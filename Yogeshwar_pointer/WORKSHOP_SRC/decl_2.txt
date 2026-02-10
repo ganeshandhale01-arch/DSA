@@ -1,0 +1,76 @@
+void (*exchange(int, void(*)(int)))(int); 
+
+exchange -> function 
+
+    exchange(int, void(*)(int))
+
+    
+void (*     exchange(int, void(*)(int))     )(int); 
+
+#-------------------------------------------------------------
+Declare a function accepting 
+    i) int 
+    ii) pointer to a function accepting 
+            i) int 
+            returning void 
+    returning pointer to a function accepting 
+            i) int 
+            returning void 
+
+1) Choose name: my_func 
+
+2) Determine primary type: function 
+    my_func()
+
+3) formal paraemter list : param 1 : int 
+    my_func(int)
+
+4) formal parameter list : param 2: pointer 
+    my_func(int, *)
+
+5) formal parameter list : param 2: pointer to function 
+
+    my_func(int, (*)())
+
+6) formal parameter list : param 2: pointer to a function 
+                                    formal parameter list : param 1: int 
+    my_func(int, (*)(int)) 
+
+7) formal parameter list : param 2: pointer to a function 
+                                    formal parameter list : param 1: int 
+                                    returning void 
+    my_func(int, void(*)(int))
+
+8)  formal parameter list : param 2: pointer to a function 
+                                    formal parameter list : param 1: int 
+                                    returning void 
+    returning
+        a pointer 
+
+    * my_func(int, void(*)(int))
+
+9) formal parameter list : param 2: pointer to a function 
+                                    formal parameter list : param 1: int 
+                                    returning void 
+    returning
+        a pointer to function 
+
+      (* my_func(int, void(*)(int))) ()
+
+10)  formal parameter list : param 2: pointer to a function 
+                                    formal parameter list : param 1: int 
+                                    returning void 
+    returning
+        a pointer to function 
+            accepting int 
+    (* my_func(int, void(*)(int))) (int)
+
+11) formal parameter list : param 2: pointer to a function 
+                                    formal parameter list : param 1: int 
+                                    returning void 
+    returning
+        a pointer to function 
+            accepting int 
+            returning void 
+
+    void (*my_func(int, void(*)(int)))(int); 
