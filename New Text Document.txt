@@ -28,7 +28,7 @@ int main()
             max1 = arr[i];
             printf("max1 = %d\n", max1);
         }
-        else if (max2 < arr[i] && max1 < arr[i])
+        else if (max2 < arr[i] && max1 > arr[i])
         {
             max2 = arr[i];
         }
@@ -190,5 +190,48 @@ Hints
 Please make sure to avoid any memory leaks when subscriptions and unsubscriptions are made. There is no need to validate the inputs for a NULL pointer value. The user should be smart enough not to pass them.
 
 All the subscribed handlers have to be called in the subscription order (need to preserve the order). In case of multiple subscriptions of the same handler, it should be called multiple times in the right order. When unsubscription is made of a handler that was inserted multiple times, only its first occurrence (the oldest one) should be removed.
+
+
+Q - How to find the how much threads are running inside the process?
+Hints - run command - top command & then press F2 to check the threads status
+   option-1 - top -H -p <PID>    eg - top -H -p 1255
+   option-2 - grep Threads /proc/<PID>/status    eg - grep Threads /proc/1234/status
+   option-3 - htop with below steps
+                Steps:Press F2 → Settings
+                      Enable “Show threads”
+                      Search PID with F3
+                      Each thread appears separately.
+
+Q - How to find the process running on which core?
+Hints - run command - top command & check a a cloumn ????
+Option-1   
+    Process → Core	    ps -o pid,psr,comm -p PID
+    Thread → Core	    ps -L -o pid,tid,psr -p PID
+    Real-time	        top -H -p PID
+Option-2  ---> Field 39 = CPU core number (processor)
+    Process → Core	    cat /proc/<PID>/stat | awk '{print $39}'
+    Thread → Core	    cat /proc/<PID>/task/<TID>/stat | awk '{print $39}'
+
+Q - How to find the process current stat?
+Hints - Option-1 ---> run command - ps -aux command & check a cloumn stat
+        Option-2 ---> run command - top command & check a a cloumn s
+
+Q - How to check if your linux system it self is hanging or not responding to the commands?
+    How will you debug?
+I first verify whether the kernel is alive using basic commands (date, uptime) and SysRq.
+Then I check CPU (top), memory(vmstat 1, free, du -h, df -h), and IO pressure (iostat -xz 1)
+If tasks are in D-state (ps -eo pid,stat,comm | grep D), it’s an IO hang.
+Finally, I inspect kernel logs (dmesg -T | tail) for lockups or driver issues.
+Check Journal log using (journalctl -xe).
+
+Q - If any application itself is not responding then how to check the issue?
+If only an application hangs, 
+I first check its process state(ps -o pid,stat,comm -p <PID> ---> identify D state) and 
+CPU usage(top -p <PID> ---> dmesg | tail).
+Then I inspect threads(ps -L -p <PID>), attach strace(strace -p <PID>) to see blocking syscalls, 
+and use gdb(gdb -p <PID> ---> (gdb) bt) or pstack(pstack <PID>) for stack traces.
+Issue Fix ---> If the process is in D-state, the issue is kernel or IO related. 
+Otherwise, it’s a user-space deadlock or logic bug.
+issue observation steps --->  ps → top → ps -L → strace → ss → lsof → gdb
 
 

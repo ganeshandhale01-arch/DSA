@@ -1,6 +1,7 @@
 /*Reverse a String In Place (or Reverse Words)
 Problem Statement:
-Given a string (character array) s[], reverse it in place ? i.e. without using extra memory (or minimal extra).
+Given a string (character array) s[], reverse it in place ? 
+i.e. without using extra memory (or minimal extra).
 E.g.
 
 s = "embedded" ? reversed as "deddebme" 
@@ -11,9 +12,11 @@ E.g.
 ?the sky is blue? ? ?blue is sky the? 
 Why this is common in embedded / system-level settings:
 
-Strings are arrays of char at core ? reversing them tests pointer arithmetic, boundary handling, memory safety.
-Requires careful swap logic, often in constrained environments (like no dynamic allocation).
-The ?reverse words? variant adds complexity because you must do two-stage reversals (reverse full string, then reverse each word) ? a good test of algorithmic decomposition. */
+Strings are arrays of char at core ? reversing them tests pointer arithmetic, 
+boundary handling, memory safety.Requires careful swap logic, often in constrained 
+environments (like no dynamic allocation).The ?reverse words? variant adds complexity
+because you must do two-stage reversals (reverse full string, then reverse each word) ? 
+a good test of algorithmic decomposition. */
 
 
 /**
@@ -85,7 +88,7 @@ int reverse(char *str, size_t start, size_t end)
         while (start < end)
         {
             str[start] = str[start] ^ str[end];
-            str[end] = str[start] ^ str[end];
+            str[end]   = str[start] ^ str[end];
             str[start] = str[start] ^ str[end];
             start++;
             end--;
